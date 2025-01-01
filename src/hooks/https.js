@@ -1,4 +1,4 @@
-const API = "https://transport-api-444706.nn.r.appspot.com";
+const API = "http://localhost:5000";
 
 async function getAllRequests() {
     try {

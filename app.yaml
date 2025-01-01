@@ -2,7 +2,7 @@ runtime: nodejs18
 
 env_variables:
   NODE_ENV: 'production'
-  REACT_APP_API_KEY: 'AIzaSyCKCQqeud8-UOcttCd1HbyVa6FzvymVe7s'
+  REACT_APP_API_KEY: 'AIzaSyAStU53JobDVKlxMjoVtOHBjBKZvAEhXEg'
 
 handlers:
   - url: /static
