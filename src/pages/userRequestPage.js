@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getFormStatus } from '../hooks/https';
 import { useJsApiLoader, StandaloneSearchBox } from '@react-google-maps/api'
-
+import { useNavigate } from 'react-router-dom';
 
 const logo = process.env.PUBLIC_URL + '/ppplogo.jpg';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 // This is the user form to register requests.
 function UserRequestPage() {
+    const navigate = useNavigate()
     const inputref = useRef(null)
 
     const { isLoaded } = useJsApiLoader({
@@ -163,67 +164,67 @@ function UserRequestPage() {
     return (
         <div>
             {!isLoading ? (
-                <>  
-                {formStatus === true ? 
-                    (<div className='max-w-sm mx-auto py-4'>
-    
-                        {showForm ?
-                            (<div id='user' className='px-3'>
-                                <div className='text-center py-5'>
-                                    <h1 className='my-2 font-bold'>
-                                        Peculiar People's Parish (PPP) Transportation Request
-                                    </h1>
-                                    <p className='text-200'>
-                                        Good day. For planning purposes, It is very important that you send in your request no later than 5pm the Saturday before.
-                                    </p>
-                                </div>
-    
-                                {/* Form */}
-                                <form className="" onSubmit={onSubmit}>
-                                    <div className="mb-5 max-w-sm">
-                                        <label htmlFor="service" className="block mb-2 text-sm font-medium text-gray-900">
-                                            What Service would you like to attend?
-                                        </label>
-                                        <select
-                                            name="service"
-                                            id="service"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-                    focus:border-blue-500 block w-full p-2.5"
-                                            value={service}
-                                            onChange={onChange}
-                                            required
-                                        >
-                                            <option value="">Select service</option>
-                                            <option value="first-service">First Service</option>
-                                            <option value="second-service">Second Service</option>
-                                        </select>
+                <>
+                    {formStatus === true ?
+                        (<div className='max-w-sm mx-auto py-4'>
+
+                            {showForm ?
+                                (<div id='user' className='px-3'>
+                                    <div className='text-center py-5'>
+                                        <h1 className='my-2 font-bold'>
+                                            Peculiar People's Parish (PPP) Transportation Request
+                                        </h1>
+                                        <p className='text-200'>
+                                            Good day. For planning purposes, It is very important that you send in your request no later than 5pm the Saturday before.
+                                        </p>
                                     </div>
-    
-                                    <div className="mb-5 max-w-sm">
-                                        <label htmlFor="fullName" className="block mb-2 text-sm font-medium text-gray-900">
-                                            Full name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="fullName"
-                                            id="fullName"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+
+                                    {/* Form */}
+                                    <form className="" onSubmit={onSubmit}>
+                                        <div className="mb-5 max-w-sm">
+                                            <label htmlFor="service" className="block mb-2 text-sm font-medium text-gray-900">
+                                                What Service would you like to attend?
+                                            </label>
+                                            <select
+                                                name="service"
+                                                id="service"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
                     focus:border-blue-500 block w-full p-2.5"
-                                            value={fullName}
-                                            onChange={onChange}
-                                            required
-                                        />
-                                    </div>
-    
-                                    <div className="mb-5 max-w-sm">
-                                        <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900">
-                                            Contact - Mobile Number
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            name="phone"
-                                            id="phone"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                                                value={service}
+                                                onChange={onChange}
+                                                required
+                                            >
+                                                <option value="">Select service</option>
+                                                <option value="first-service">First Service</option>
+                                                <option value="second-service">Second Service</option>
+                                            </select>
+                                        </div>
+
+                                        <div className="mb-5 max-w-sm">
+                                            <label htmlFor="fullName" className="block mb-2 text-sm font-medium text-gray-900">
+                                                Full name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="fullName"
+                                                id="fullName"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                    focus:border-blue-500 block w-full p-2.5"
+                                                value={fullName}
+                                                onChange={onChange}
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="mb-5 max-w-sm">
+                                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900">
+                                                Contact - Mobile Number
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                name="phone"
+                                                id="phone"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
                     focus:border-blue-500 block w-full p-2.5"
                                                 value={phone}
                                                 onChange={onChange}
@@ -257,16 +258,16 @@ function UserRequestPage() {
                                                     onLoad={(ref) => inputref.current = ref}
                                                     onPlacesChanged={handleOnPlacesChange}
                                                 >
-                                        <input
-                                            type="text"
-                                            name="address"
+                                                    <input
+                                                        type="text"
+                                                        name="address"
                                                         placeholder='Enter address'
-                                            id="address"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                            value={address}
-                                            onChange={onChange}
-                                            required
-                                        />
+                                                        id="address"
+                                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                        value={address}
+                                                        onChange={onChange}
+                                                        required
+                                                    />
                                                 </StandaloneSearchBox>
                                             }
 
@@ -322,9 +323,24 @@ function UserRequestPage() {
                                     </div>
 
                                     <p>
-                                        Your information has been recorded,
+                                        Your information has been recorded, <br />
+                                        You will be contacted soon. <br />
                                         Thank you
                                     </p>
+
+                                    <div>
+                                        <br />
+                                        <p>
+                                            Do you want to request another Ride?
+                                        </p>
+                                        <br />
+
+                                        <button onClick={() => navigate('/requests')}
+                                            className="text-white bg-blue-500 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center"
+                                        >
+                                            Request Ride
+                                        </button>
+                                    </div>
 
                                 </div>)}
 
@@ -342,12 +358,12 @@ function UserRequestPage() {
 
                         </div>)
                     }
-                
-    
-            </>
-              ) : ""}
+
+
+                </>
+            ) : ""}
         </div>
-        
+
     );
 }
 
