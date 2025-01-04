@@ -62,7 +62,7 @@ function Viewrequests() {
     if (!origin || origin.length === 0) {
 
       console.error('Origin is missing or invalid.');
-      
+
       return; // Prevent the function from proceeding
     }
 
@@ -105,14 +105,14 @@ function Viewrequests() {
     }
   }, [requests]);
 
-    const logoutUser = () => {
+  const logoutUser = () => {
     setUserInfo(null);
     navigate('/operator');
   };
 
   const handleFormStatusToggle = () => {
     const newStatus = { status: !showForm };
-        httpsetFormStatus(newStatus)
+    httpsetFormStatus(newStatus)
       .then(() => setShowForm(!showForm))
       .catch(err => console.log(err));
   };
@@ -124,7 +124,7 @@ function Viewrequests() {
         .then(function (result) {
           if (result.state === "granted" || result.state === "prompt") {
             navigator.geolocation.getCurrentPosition(success, errors, options);
-    }
+          }
         });
     } else {
       console.log("Geolocation is not supported by this browser.");
@@ -158,7 +158,7 @@ function Viewrequests() {
 
   function errors(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
+  }
 
   return (
     <>
@@ -190,9 +190,12 @@ function Viewrequests() {
         )}
 
         {userInfo?.privilege === 'Admin' && (
-          <button className='w-full mb-2' onClick={handleFormStatusToggle} style={{ backgroundColor: showForm ? 'yellow' : 'green' }}>
-            {showForm ? 'Close Form' : 'Open Form'}
-          </button>
+          <div>
+            {/* <p> The Form is currently {}, click to </p> */}
+            <button className='w-full mb-2' onClick={handleFormStatusToggle} style={{ backgroundColor: showForm ? 'yellow' : 'green' }}>
+              {showForm ? 'Close Form' : 'Open Form'}
+            </button>
+          </div>
         )}
       </div>
 

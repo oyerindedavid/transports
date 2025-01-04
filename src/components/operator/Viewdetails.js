@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { IoMdCall } from "react-icons/io";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { updateRequest } from '../../hooks/https';
+import { MdHotelClass } from "react-icons/md";
 
 // This is the request dropdown
 function Viewdetails({ request }) {
     const [status, setStatus] = useState(request.status);
-
+    const [updated, setUpdated] = useState(false);
     // Pre-generated messages
     const messages = [
         {
@@ -29,26 +30,43 @@ function Viewdetails({ request }) {
 
     const updateStatus = (cStatus) => {
         // setRealtime(cStatus)
+        setUpdated(true);
         const set = updateRequest(request._id, cStatus);
         if (!set) {
             alert("Unable to update request status");
         }
         setStatus(cStatus);
+        setUpdated(false);
     }
+
+    const createdAt = request.createdAt; // Assuming this is a valid ISO timestamp
+    const date = new Date(createdAt);
+
+    // Format date
+    const formattedDate = (date.toLocaleString('default', { month: 'long' })).substring(0, 3) + " " + date.getDate();
+
+    // Format time
+    const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
 
     return (
         <div className='b-0 flex flex-col gap-2 bg-blue-20'>
             <div className='flex justify-between'>
-                <h4>
-                    Time:
+                <h4 className=' text-sm'>
+                    <p>Time:</p>
+
+                    <div className=''>
+                        <p>{formattedDate}, {formattedTime}</p>
+                    </div>
+
                 </h4>
 
                 {/* Status */}
-                <h5 className='mx-2'>
-                    <p>Status: </p> {request.status}
+                <div className='text-sm flex'>
+                    <p><MdHotelClass className='block' size={25} /></p> <p>{status} </p>
                     {/* Waiting to be picked */}
                     {/* picked */}
-                </h5>
+                </div>
             </div>
 
             <div className='flex justify-between'>
@@ -97,16 +115,16 @@ function Viewdetails({ request }) {
 
             <div className='flex justify-between p-2'>
 
-                <button className='bg-yellow-300 p-2 rounded-sm' onClick={() => updateStatus('unavailable')}>
+                <button className='bg-yellow-300 p-2 rounded-sm' onClick={() => updateStatus('Unavailable')}>
                     Unavailable
                 </button>
 
-                {status === 'unavailable' || status === 'dropped' || status === 'waiting' ? (
-                    <button className='bg-green-300 p-2 rounded-sm' onClick={() => updateStatus('picked')}>
+                {status === 'Unavailable' || status === 'Dropped' || status === 'waiting' ? (
+                    <button className='bg-green-300 p-2 rounded-sm' onClick={() => updateStatus('Picked')}>
                         Picked
                     </button>
                 ) : (
-                    <button className='bg-green-300 p-2 rounded-sm' onClick={() => updateStatus('dropped')}>
+                    <button className='bg-green-300 p-2 rounded-sm' onClick={() => updateStatus('Dropped')}>
                         Dropped
                     </button>
                 )}
