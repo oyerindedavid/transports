@@ -1,12 +1,23 @@
 runtime: nodejs18
 
+env: standard
+
 env_variables:
-  NODE_ENV: 'production'
   REACT_APP_API_KEY: 'AIzaSyAStU53JobDVKlxMjoVtOHBjBKZvAEhXEg'
+  PUBLIC_URL: '../../public'  # Set your custom PUBLIC_URL if needed
 
 handlers:
+  # Serve static files from the custom public path
+  - url: /public
+    static_dir: build/public
+
+  # Default handler for the rest of the static files (CSS, JS)
   - url: /static
     static_dir: build/static
+
+  # Handle the main page (index.html)
   - url: /
     static_files: build/index.html
     upload: build/index.html
+
+entrypoint: "npm start"
