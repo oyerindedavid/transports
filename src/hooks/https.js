@@ -11,6 +11,34 @@ async function getAllRequests() {
     }
 }
 
+// Delete Request
+
+async function deleteRequest(reqId, setRequests) {
+    try {
+        const res = await fetch(`${API}/requests`, {
+            method: 'DELETE',
+            body: JSON.stringify({ id: reqId }),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: 'include',
+        })
+
+        if (res.ok) {
+            setRequests((prev) => prev.filter(req => req._id !== reqId));
+            return await res.json();
+        } else {
+            const error = await res.json();
+            console.error("Failed to delete:", error.message);
+        }
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+//Updated
+
 async function getFormStatus() {
     try {
         const data = await fetch(`${API}/operator/formstatus/`);
@@ -177,10 +205,9 @@ async function modifyOperator(data) {
     return response;
 }
 
-
-
 export {
     getAllRequests,
+    deleteRequest,
     getAllContainers,
     loginOperator,
     getAllOperators,
