@@ -18,7 +18,7 @@ function Edituser({ setOperatorToEdit, setActive }) {
   };
 
   return (
-    <div className='max-w-sm mx-auto py-1 my-1'>
+    <div className='py-1 my-1'>
       {/* Display the list of operators sorted by the latest added */}
       {operators
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))  // Sort by date descending
