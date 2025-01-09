@@ -12,7 +12,7 @@ function Modifyoperator() {
   const [operatorToEdit, setOperatorToEdit] = useState(null); // New state to store operator for editing
 
   return (
-    <div>
+    <div className='flex flex-col max-w-sm mx-auto py-4 my-3'>
 
       <div className='flex justify-between'>
         <div onClick={() => navigate(-1)}>
@@ -35,7 +35,7 @@ function Modifyoperator() {
       </div>
 
       {active && (
-        <div className='max-w-sm mx-auto py-4 my-3'>
+        <div className='py-4 my-3'>
           <OperatorForm setActive={setActive} operator={operatorToEdit} />
         </div>
       )}

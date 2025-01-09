@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react';
 import Requests from '../operator/Requests';
 import { getAllOperators, getAllContainers, assignOperator } from '../../hooks/https';
 
-function List({ geoLoc, data, status }) {
+function List({ geoLoc, data, status, total }) {
     const [operators, setOperators] = useState([]);
     const [exactOperator, setExactOperator] = useState(null);
     const [container, setContainer] = useState([]);
