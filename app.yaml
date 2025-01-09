@@ -1,0 +1,24 @@
+runtime: nodejs18
+
+env: standard
+
+env_variables:
+  REACT_APP_API_KEY: 'AIzaSyAStU53JobDVKlxMjoVtOHBjBKZvAEhXEg'
+  MY_PUBLIC_URL: '../../public'  
+  API: 'https://transport-api-444706.nn.r.appspot.com'
+
+handlers:
+  # Serve static files from the custom public path
+  - url: /public
+    static_dir: build/public
+
+  # Default handler for the rest of the static files (CSS, JS)
+  - url: /static
+    static_dir: build/static
+
+  # Handle the main page (index.html)
+  - url: /
+    static_files: build/index.html
+    upload: build/index.html
+
+entrypoint: "npm start"

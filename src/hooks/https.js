@@ -1,4 +1,4 @@
-const API = process.env.REACT_APP_API_KEY;
+const API = "https://transport-api-444706.nn.r.appspot.com";
 
 async function getAllRequests() {
     try {
