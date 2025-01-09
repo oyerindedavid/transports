@@ -1,4 +1,4 @@
-const API = process.env.REACT_APP_API_KEY;
+const API = "http://localhost:3000";
 
 async function getAllRequests() {
     try {
