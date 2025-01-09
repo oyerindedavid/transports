@@ -3,7 +3,8 @@ import { getFormStatus } from '../hooks/https';
 import { useJsApiLoader, StandaloneSearchBox } from '@react-google-maps/api'
 import { useNavigate } from 'react-router-dom';
 
-const logo = process.env.PUBLIC_URL + '/ppplogo.jpg';
+
+const logo = process.env.MY_PUBLIC_URL + '/ppplogo.jpg';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 // This is the user form to register requests.
