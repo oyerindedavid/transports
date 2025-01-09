@@ -4,7 +4,8 @@ env: standard
 
 env_variables:
   REACT_APP_API_KEY: 'AIzaSyAStU53JobDVKlxMjoVtOHBjBKZvAEhXEg'
-  MY_PUBLIC_URL: '../../public'  # Set your custom PUBLIC_URL if needed
+  MY_PUBLIC_URL: '../../public'  
+  API: 'https://transport-api-444706.nn.r.appspot.com'
 
 handlers:
   # Serve static files from the custom public path
