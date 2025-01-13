@@ -77,16 +77,16 @@ function UserRequestPage() {
 
             const data = await response.json();
 
-            if (response) {
+            if (data.ok) {
                 // Handle success (e.g., show success message)
+                console.log(data);
                 console.log('Form submitted successfully:', data);
                 setShowForm(!showForm);
             } else {
-                setShowForm(!showForm);
                 // Handle error (e.g., show error message)
                 console.error('Error submitting form:', data);
                 console.log(data.message);
-                alert("Unable to submit your request, please ensure you provide accurate information.");
+                alert("Unable to submit your request, please ensure this is a new request and you are providing accurate information.");
             }
         } catch (error) {
             console.error('Error sending form data:', error);
@@ -165,10 +165,6 @@ function UserRequestPage() {
     function errors(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-
-
-
-
 
     return (
         <div>
