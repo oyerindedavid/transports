@@ -3,8 +3,7 @@ import { getFormStatus } from '../hooks/https';
 import { useJsApiLoader, StandaloneSearchBox } from '@react-google-maps/api'
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
-
-const logo = process.env.PUBLIC_URL + '/ppplogo.jpg';
+const logo = process.env.MY_PUBLIC_URL + '/ppplogo.jpg';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 // This is the user form to register requests.
@@ -86,6 +85,7 @@ function UserRequestPage() {
                 // Handle error (e.g., show error message)
                 console.error('Error submitting form:', data);
                 console.log(data.message);
+
                 alert("Unable to submit your request, please ensure this is a new request and you are providing accurate information.");
             }
         } catch (error) {
