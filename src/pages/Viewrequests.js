@@ -89,6 +89,8 @@ function Viewrequests() {
           distanceData: distanceResults[index],
         }));
 
+        console.log(updatedData);
+
         updatedData.sort((a, b) => a.distanceData.distance.value - b.distanceData.distance.value);
         setAddressAndDistance(updatedData);
       } else {
@@ -210,20 +212,18 @@ function Viewrequests() {
               {
                 showForm ?
                   <div className='w-full my-2 text-center'>
-                    <p>The Form is currently Closed <br /> Click to Open</p>
-                    <button onClick={handleFormStatusToggle} className='w-full rounded-md p-3 bg-yellow-600'>Open Form</button>
+                    <p>The Form is currently Open <br /> Click to Close</p>
+                    <button onClick={handleFormStatusToggle} className='w-full rounded-md p-3 bg-red-500'>Close Form</button>
                   </div>
                   :
                   <div className='w-full my-2 text-center'>
-                    <p>The Form is currently Open <br /> Click to Close</p>
-                    <button onClick={handleFormStatusToggle} className='w-full rounded-md p-3 bg-red-500'>Close Form</button>
+                    <p>The Form is currently Closed <br /> Click to Open</p>
+                    <button onClick={handleFormStatusToggle} className='w-full rounded-md p-3 bg-green-600'>Open Form</button>
                   </div>
               }
             </div>
           )}
         </div>}
-
-
     </>
   );
 }
