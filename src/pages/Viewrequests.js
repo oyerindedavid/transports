@@ -7,6 +7,10 @@ import { TbLogout2 } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import { getAllRequests, getFormStatus, httpsetFormStatus } from '../hooks/https';
 import OperatorView from '../components/operator/OperatorView';
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
