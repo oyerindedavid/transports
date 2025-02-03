@@ -1,4 +1,4 @@
-const API = process.env.REACT_APP_API_KEY;
+const API = process.env.REACT_APP_API_ADDRESS;
 
 async function getAllRequests() {
     try {
