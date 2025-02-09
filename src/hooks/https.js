@@ -1,5 +1,6 @@
 const API = process.env.REACT_APP_API_KEY;
 
+// 'http://localhost:5000'
 async function getAllRequests() {
     try {
         const res = await fetch(`${API}/requests/`);

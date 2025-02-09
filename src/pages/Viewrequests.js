@@ -75,6 +75,7 @@ function Viewrequests() {
       return;
     }
 
+   // Constructor error begins here 
     const service = new window.google.maps.DistanceMatrixService();
 
     service.getDistanceMatrix({
@@ -170,7 +171,7 @@ function Viewrequests() {
   }
 
   function errors(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+    console.log(`ERROR(${err.code}): ${err.message}`);
   }
 
   return (
