@@ -99,9 +99,9 @@ export default function Requests({ data }) {
                             </Dialog>
                         </div>
                         <div>
-                            <GiPathDistance size={20} className="inline" /> {data.distanceData.distance.text}
+                            <GiPathDistance size={20} className="inline" /> {data.distanceData?.distance.text}
                             <br />
-                            <MdOutlineAccessTimeFilled size={20} className="inline" /> {data.distanceData.duration.text}
+                            <MdOutlineAccessTimeFilled size={20} className="inline" /> {data.distanceData?.duration.text}
                         </div>
                     </div>
                 </div>

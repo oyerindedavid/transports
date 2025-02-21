@@ -80,7 +80,7 @@ function Viewdetails({ request }) {
                                     key={message.id}
                                     id='message'
                                     className="message-button p-1 bg-grey-500 mb-1 text-sm rounded-sm inline"
-                                    href={`sms:${request.phone}?&body=${encodeURIComponent(`Hi, ${message}`)}`}
+                                    href={`sms:${request.phone}?&body=${encodeURIComponent(`Hi, ${message.msg}`)}`}
                                 >
                                     {message.msg}
                                 </a>
