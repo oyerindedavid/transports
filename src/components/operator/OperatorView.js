@@ -2,10 +2,10 @@ import React, { useEffect, useState, useContext } from 'react';
 import { getAllContainers, getAllRequests } from '../../hooks/https';
 import Requests from './Requests';
 
-function OperatorView() {
+function OperatorView({requests}) {
     // const userInfoContext = useContext(UserContext);
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    const [requests, setRequests] = useState([]);
+    // const [requests, setRequests] = useState([]);
     const [exactContainer, setExactContainer] = useState(null); // Initialize as null
 
     // Get the container content on intitial render
@@ -34,13 +34,6 @@ function OperatorView() {
             .catch(err => {
                 console.log("Error fetching containers:", err);
             });
-
-        // Get all requests
-        getAllRequests().then(data => {
-            setRequests(data)
-        }).catch(err => {
-            console.log(err)
-        });
 
     }, []);
 
