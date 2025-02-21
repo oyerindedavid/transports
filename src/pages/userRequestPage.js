@@ -85,8 +85,6 @@ function UserRequestPage() {
                 // Handle error (e.g., show error message)
                 console.error('Error submitting form:', data);
                 console.log(data.message);
-
-                alert("Unable to submit your request, please ensure this is a new request and you are providing accurate information.");
             }
         } catch (error) {
             console.error('Error sending form data:', error);
