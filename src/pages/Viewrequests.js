@@ -7,6 +7,7 @@ import { TbLogout2 } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import { getAllRequests, getFormStatus, httpsetFormStatus } from '../hooks/https';
 import OperatorView from '../components/operator/OperatorView';
+import Loader from '../components/Loader';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -17,9 +18,9 @@ function Viewrequests() {
   const [showForm, setShowForm] = useState(null);
   const [origin, setOrigin] = useState([]);
   const [destinations, setDestinations] = useState([]);
-  const [addressAndDistance, setAddressAndDistance] = useState([]);
   const { userInfo, setUserInfo } = useContext(UserContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getCurrentLocation();
