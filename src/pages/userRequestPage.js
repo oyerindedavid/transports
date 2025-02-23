@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 const logo = process.env.MY_PUBLIC_URL + '/ppplogo.jpg';
 const API_KEY = process.env.REACT_APP_API_KEY;
+const REACT_APP_API_ADDRESS = process.env.REACT_APP_API_ADDRESS;
 
 // This is the user form to register requests.
 function UserRequestPage() {
@@ -18,7 +19,7 @@ function UserRequestPage() {
         region: "ca"
     })
 
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true)
     const [showForm, setShowForm] = useState(true);
     const [formStatus, setFormStatus] = useState(null);
     const [formData, setFormData] = useState({
@@ -31,6 +32,7 @@ function UserRequestPage() {
         feedback: '',
         status: 'waiting',
     });
+
 
 
     useEffect(() => {
@@ -54,16 +56,11 @@ function UserRequestPage() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true); // Start loading when route changes
 
-        // Simulate async route loading or component mounting delay
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
-
-        // If validation passes, you can submit the form
+        // If validation passes, you can submit the form (e.g., send to an API)
         // API endpoint to send data to
-        const apiEndpoint = 'http://localhost:5000/requests/';
+        console.log("API address: ", process.env.REACT_APP_API_ADDRESS)
+        const apiEndpoint = `${REACT_APP_API_ADDRESS}/requests/`;
 
         try {
             const response = await fetch(apiEndpoint, {
@@ -88,9 +85,7 @@ function UserRequestPage() {
             }
         } catch (error) {
             console.error('Error sending form data:', error);
-            alert("Unable to submit your request, please ensure you provide accurate information.");
         }
-
     };
 
     function handleOnPlacesChange() {
@@ -351,7 +346,7 @@ function UserRequestPage() {
 
                         : (<div id='welcome' className='bg-red-300 mb-5 py-6 max-w-lg font-400 text-center font-bold'>
                             <div>
-                                <h1>Looks like...</h1>
+                                <h1>Sorry..</h1>
                             </div>
 
                             <p>
