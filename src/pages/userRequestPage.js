@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 const logo = process.env.MY_PUBLIC_URL + '/ppplogo.jpg';
 const API_KEY = process.env.REACT_APP_API_KEY;
+const REACT_APP_API_ADDRESS = process.env.REACT_APP_API_ADDRESS;
 
 // This is the user form to register requests.
 function UserRequestPage() {
