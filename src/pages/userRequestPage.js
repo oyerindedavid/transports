@@ -58,7 +58,7 @@ function UserRequestPage() {
 
         // If validation passes, you can submit the form (e.g., send to an API)
         // API endpoint to send data to
-        const apiEndpoint = 'http://localhost:5000/requests/';
+        const apiEndpoint = `${API_KEY}/requests/`;
 
         try {
             const response = await fetch(apiEndpoint, {
