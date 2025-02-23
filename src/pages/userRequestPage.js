@@ -59,6 +59,7 @@ function UserRequestPage() {
 
         // If validation passes, you can submit the form (e.g., send to an API)
         // API endpoint to send data to
+        console.log("API address: ", process.env.REACT_APP_API_ADDRESS)
         const apiEndpoint = `${REACT_APP_API_ADDRESS}/requests/`;
 
         try {

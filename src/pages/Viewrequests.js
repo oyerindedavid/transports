@@ -29,6 +29,8 @@ function Viewrequests() {
         const destinationAddresses = allRequests.map(req => req.address);
         setDestinations(destinationAddresses);
 
+        console.log("API address: ", process.env.REACT_APP_API_ADDRESS)
+
         getFormStatus()
           .then(res => {
             setShowForm(res[0].status)
