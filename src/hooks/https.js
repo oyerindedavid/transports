@@ -1,6 +1,4 @@
-const API = process.env.REACT_APP_API_KEY;
-
-// 'http://localhost:5000'
+const API = process.env.BE_API;
 
 async function getAllRequests() {
     try {
