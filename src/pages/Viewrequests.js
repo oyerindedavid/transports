@@ -23,6 +23,7 @@ function Viewrequests() {
 
   useEffect(() => {
     getCurrentLocation();
+    
     getAllRequests()
       .then(allRequests => {
         setRequests(allRequests);
