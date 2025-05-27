@@ -7,6 +7,7 @@ import { TbLogout2 } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import { getAllRequests, getFormStatus, httpsetFormStatus } from '../hooks/https';
 import OperatorView from '../components/operator/OperatorView';
+import Loader from '../components/Loader';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -17,9 +18,9 @@ function Viewrequests() {
   const [showForm, setShowForm] = useState(null);
   const [origin, setOrigin] = useState([]);
   const [destinations, setDestinations] = useState([]);
-  const [addressAndDistance, setAddressAndDistance] = useState([]);
   const { userInfo, setUserInfo } = useContext(UserContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getCurrentLocation();
@@ -34,8 +35,9 @@ function Viewrequests() {
 
         getFormStatus()
           .then(res => {
-            setShowForm(res[0].status)
-          })
+            setShowForm(res[0].status);
+            setLoading(false);
+          });
       })
       .catch(err => console.log(err));
   }, []);
@@ -46,7 +48,6 @@ function Viewrequests() {
       loadGoogleMapsScript();
     }
   }, [destinations, origin]);
-
 
   // Filter unique geolocations
   useEffect(() => {
@@ -126,6 +127,8 @@ function Viewrequests() {
           distanceData: distanceResults[index],
         }));
 
+        console.log(updatedData);
+
         updatedData.sort((a, b) => a.distanceData.distance.value - b.distanceData.distance.value);
 
         setRequests(updatedData);
@@ -182,44 +185,56 @@ function Viewrequests() {
 
   return (
     <>
-
-      <div className='flex flex-col max-w-sm mx-auto py-4 my-3'>
-        <div className='relative mb-9 flex'>
-          <button className='absolute top-0 left-0 block' onClick={logoutUser}>
-            <TbLogout2 size={30} color='red' />
-          </button>
-          {userInfo?.privilege === 'Admin' && (
-            <button className='absolute top-0 right-0 block p-1 rounded-lg' onClick={() => navigate('/operator/modify/')}>
-              <FaRegAddressBook size={30} />
+      {loading ? <Loader /> :
+        <div className='flex flex-col max-w-sm mx-auto py-4 my-3'>
+          <div className='relative mb-9 flex'>
+            <button className='absolute top-0 left-0 block' onClick={logoutUser}>
+              <TbLogout2 size={30} color='red' />
             </button>
-          )}
-        </div>
-        <span style={styleGetCurrentLocation()} onClick={getCurrentLocation}><b>Refresh</b></span>
-        {/* Display request data */}
-        {userInfo && addressAndDistance.length > 0 ? (
-          userInfo.privilege === 'Admin' ? (
-            uniqueGeolocations.map(geoLoc => {
-              const filteredRequests = addressAndDistance.filter(req => req.geolocation === geoLoc);
-              return filteredRequests.length > 0 ? <List key={geoLoc} geoLoc={geoLoc} data={filteredRequests} status={userInfo.privilege} /> : null;
-            })
-          ) : (
-            <OperatorView />
-          )
-        ) : (
-          <p className='text-center p-3 font-bold'>Sorry <br /> There are no requests yet</p>
-        )}
-
-        {userInfo?.privilege === 'Admin' && (
-          <div>
-            {/* <p> The Form is currently {}, click to </p> */}
-            <button className='w-full mb-2' onClick={handleFormStatusToggle} style={{ backgroundColor: showForm ? 'yellow' : 'green' }}>
-              {showForm ? 'Close Form' : 'Open Form'}
-            </button>
+            {userInfo?.privilege === 'Admin' && (
+              <button className='absolute top-0 right-0 block p-1 rounded-lg' onClick={() => navigate('/operator/modify/')}>
+                <FaRegAddressBook size={30} />
+              </button>
+            )}
           </div>
-        )}
-      </div>
 
+          <span style={styleGetCurrentLocation()} className='rounded-sm text-center max-w-sm mx-auto my-2 bg-green-500' onClick={getCurrentLocation}><b>Refresh</b></span>
+          {/* Display request data */}
+          {userInfo && requests?.length > 0 ? (
+            userInfo?.privilege === 'Admin' ? (
+              uniqueGeolocations.map(geoLoc => {
+                // NEXT...
+                // Think of a logic to sum the number of members in a geolocation and display it real-time
+                // List already has a "total" props, but the logic is not extablished yet
+                // var sum = ;
 
+                const filteredRequests = requests.filter(req => req.geolocation === geoLoc);
+                return filteredRequests.length > 0 ? <List key={geoLoc} geoLoc={geoLoc} data={filteredRequests} status={userInfo.privilege} /> : null;
+              })
+            ) : (
+              <OperatorView requests={requests} />
+            )
+          ) : (
+            <p className='text-center p-5 bg-red-200 font-bold rounded-md'>Sorry <br /> There are no requests yet</p>
+          )}
+
+          {userInfo?.privilege === 'Admin' && (
+            <div>
+              {
+                showForm ?
+                  <div className='w-full my-2 text-center'>
+                    <p>The Form is currently Open <br /> Click to Close</p>
+                    <button onClick={handleFormStatusToggle} className='w-full rounded-md p-3 bg-red-500'>Close Form</button>
+                  </div>
+                  :
+                  <div className='w-full my-2 text-center'>
+                    <p>The Form is currently Closed <br /> Click to Open</p>
+                    <button onClick={handleFormStatusToggle} className='w-full rounded-md p-3 bg-green-600'>Open Form</button>
+                  </div>
+              }
+            </div>
+          )}
+        </div>}
     </>
   );
 }

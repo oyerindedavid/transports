@@ -2,6 +2,8 @@ const API = process.env.BE_API;
 
 // 'http://localhost:5000'
 
+// 'http://localhost:5000'
+
 async function getAllRequests() {
     try {
         const res = await fetch(`${API}/requests/`);
