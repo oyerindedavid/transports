@@ -3,8 +3,10 @@ import { getFormStatus } from '../hooks/https';
 import { useJsApiLoader, StandaloneSearchBox } from '@react-google-maps/api'
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
+
 const logo = process.env.MY_PUBLIC_URL + '/ppplogo.jpg';
 const API_KEY = process.env.REACT_APP_API_KEY;
+const apiEndpoint = process.env.BE_API;
 
 // This is the user form to register requests.
 function UserRequestPage() {
@@ -38,7 +40,7 @@ function UserRequestPage() {
         getFormStatus()
             .then((res) => {
                 setFormStatus(res[0].status)
-                setIsLoading(false)
+                setIsLoading(false);
             })
             .catch(err => console.log(err))
     }, [])
@@ -63,8 +65,7 @@ function UserRequestPage() {
 
         // If validation passes, you can submit the form
         // API endpoint to send data to
-        const apiEndpoint = 'http://localhost:5000/requests/';
-
+        
         try {
             const response = await fetch(apiEndpoint, {
                 method: 'POST',
