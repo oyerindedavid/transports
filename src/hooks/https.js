@@ -1,9 +1,6 @@
-const API = process.env.BE_API;
+const API = process.env.REACT_APP_API_ADDRESS;
 
 // 'http://localhost:5000'
-
-// 'http://localhost:5000'
-
 async function getAllRequests() {
     try {
         const res = await fetch(`${API}/requests/`);
@@ -16,7 +13,6 @@ async function getAllRequests() {
 }
 
 // Delete Request
-
 async function deleteRequest(reqId, setRequests) {
     try {
         const res = await fetch(`${API}/requests`, {
@@ -42,7 +38,6 @@ async function deleteRequest(reqId, setRequests) {
 }
 
 //Updated
-
 async function getFormStatus() {
     try {
         const data = await fetch(`${API}/operator/formstatus/`);
